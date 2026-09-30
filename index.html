@@ -305,13 +305,12 @@ html{scroll-behavior:smooth}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;startCollapsed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { collapsed: false, open: { sport: true, casino: true, esports: true, bonus: true, paiements: true, infos: true }, league: 'MLB', more: false, about: false, picks: {} };
+  state = { collapsed: false, open: { sport: true, casino: true, bonus: true, paiements: true, infos: true }, league: 'MLB', more: false, about: false, picks: {} };
   renderVals() {
     const s = this.state, collapsed = s.collapsed ?? this.props.startCollapsed;
     const groups = [
-      { key: 'sport', title: 'Paris sportifs', icon: 'trophy', items: [['volleyball','Sports populaires','sports'],['flame','Matchs populaires','matchs'],['goal','Cloudbet Sport','paris-sportifs'],['percent','Cotes et types de paris','cotes']] },
-      { key: 'casino', title: 'Casino', icon: 'dice-5', items: [['cherry','Jeux populaires','casino'],['spade','Casino et live casino','casino-live']] },
-      { key: 'esports', title: 'Esports', icon: 'gamepad-2', items: [['crosshair','Esports populaires','esports']] },
+      { key: 'sport', title: 'Paris sportifs', icon: 'trophy', items: [['flame','Matchs populaires','matchs'],['goal','Cloudbet Sport','paris-sportifs'],['percent','Cotes et types de paris','cotes']] },
+      { key: 'casino', title: 'Casino', icon: 'dice-5', items: [['spade','Casino et live casino','casino-live']] },
       { key: 'bonus', title: 'Bonus et VIP', icon: 'gift', items: [['badge-percent','Bonus de bienvenue','bonus'],['ticket','Code promo','promo-code'],['crown','Programme VIP','vip']] },
       { key: 'paiements', title: 'Paiements', icon: 'wallet', items: [['bitcoin','Cryptomonnaies','cryptomonnaies'],['arrow-left-right','Dépôts et retraits','depots-retraits'],['zap','Retraits en temps réel','retraits-temps-reel']] },
       { key: 'infos', title: 'À propos', icon: 'info', items: [['book-open','Cloudbet en bref','cloudbet-en-bref'],['user-plus','Inscription et connexion','inscription'],['smartphone','App et mobile','mobile'],['shield-check','Réglementation','reglementation']] },
