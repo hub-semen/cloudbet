@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+<link rel="apple-touch-icon" href="./images/favicon-180.png">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -22,7 +25,7 @@ a{color:#b69cff;text-decoration:underline}a:hover{color:#d4f53c}
 <div style="display:grid;grid-template-columns:auto minmax(0,1fr);min-height:100vh">
 
 <aside style="width:{{ sideW }};border-right:1px solid #231d2e;padding:12px 10px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;height:100vh;overflow-y:auto;background:#15111d">
-  <div style="font-family:Unbounded;font-weight:800;font-size:18px;letter-spacing:1px;padding:4px 6px;color:#fff">{{ logoText }}</div>
+  <a href="./" style="display:flex;align-items:center;gap:10px;padding:4px 6px;color:#fff;text-decoration:none"><img src="./images/logo.png" alt="Cloudbet" width="40" height="18" style="display:block;flex:none;width:40px;height:auto"><sc-if value="{{ expanded }}"><span style="font-family:Unbounded;font-weight:800;font-size:18px;letter-spacing:1px">CLOUDBET</span></sc-if></a>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
     <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
       <div style="background:#231d2e;border-radius:10px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:#cfc8dc;cursor:pointer" style-hover="background:#2e263b"><i class="icon-{{ m.icon }}" style="font-size:16px"></i><span>{{ m.label }}</span></div>
@@ -324,7 +327,7 @@ class Component extends DCLogic {
       return { line, price, bg: on ? '#8b5cf6' : 'transparent', color: on ? '#fff' : '#d4f53c', pick: () => this.setState(st => ({ picks: { ...st.picks, [k]: !st.picks[k] } })) };
     }) })) }));
     return {
-      sideW: collapsed ? '72px' : '220px', expanded: !collapsed, logoText: collapsed ? 'C' : 'CLOUDBET',
+      sideW: collapsed ? '72px' : '220px', expanded: !collapsed,
       collapseIcon: collapsed ? 'panel-left-open' : 'panel-left-close', toggleSide: () => this.setState({ collapsed: !collapsed }),
       modes: collapsed ? [{icon:'trophy',label:''}] : [{icon:'trophy',label:'Sports'},{icon:'dice-5',label:'Casino'},{icon:'gamepad-2',label:'Esports'}],
       navGroups: groups, socials: ['chrome','wallet','apple','twitter','send','github'],
