@@ -313,7 +313,7 @@ html{scroll-behavior:smooth}
       <sc-for list="{{ footCols }}" as="c" hint-placeholder-count="4">
         <div style="padding:0 16px;border-left:1px solid #231d2e;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:14px;font-weight:800;margin-bottom:4px">{{ c.title }}</div>
-          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="6"><a href="#" style="font-size:12px;color:#a79fb6;text-decoration:none">{{ l }}</a></sc-for>
+          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="6"><a href="{{ l.href }}" style="font-size:12px;color:#a79fb6;text-decoration:none" style-hover="color:#fff">{{ l.label }}</a></sc-for>
         </div>
       </sc-for>
     </div>
@@ -362,11 +362,11 @@ class Component extends DCLogic {
       aboutH: s.about ? '600px' : '70px', aboutLabel: s.about ? 'Show less' : 'Show more', toggleAbout: () => this.setState({ about: !s.about }),
       footSocials: ['instagram','send','twitter','youtube','message-square','github','radio'],
       footCols: [
-        {title:'Resources',links:['VIP','Promotions','Blog','Academy','Affiliate Program','Newsroom','Partnerships','Supported cryptocurrencies','About us']},
-        {title:'Sports',links:['Live bet in-play','Bitcoin esports','Bet on soccer','Bet on tennis','Bet on basketball','Crypto sportsbook']},
-        {title:'Casino',links:['Bitcoin baccarat','Bitcoin blackjack','Bitcoin roulette','Bitcoin slots','Table games','Live bitcoin casino']},
-        {title:'Support',links:['Responsible gambling','Gambling helpline','Self exclusion','Provably fair','Terms of Service','Sports rules','Help Center']},
-      ],
+        {title:'À propos',links:[['Réglementation','reglementation'],['Cloudbet en bref','cloudbet-en-bref'],['App et mobile','mobile'],['Inscription et connexion','inscription']]},
+        {title:'Jeux et paris',links:[['Esports','esports'],['Cotes et types de paris','cotes'],['Casino','casino'],['Matchs populaires','matchs'],['Sports','sports'],['Cloudbet Sport','paris-sportifs']]},
+        {title:'Paiements',links:[['Retraits en temps réel','retraits-temps-reel'],['Cryptomonnaies','cryptomonnaies'],['Dépôts et retraits','depots-retraits']]},
+        {title:'Bonus et VIP',links:[['Programme VIP','vip'],['Bonus de bienvenue','bonus'],['Code promo','promo-code']]},
+      ].map(c => ({ title: c.title, links: c.links.map(([label,id]) => ({ label, href: '#' + id })) })),
     };
   }
 }
