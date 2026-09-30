@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,11 +38,11 @@ html{scroll-behavior:smooth}
     </sc-for>
   </div>
   <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}">
-    <div style="background:linear-gradient(90deg,#3a2a66,#2a2240);border-radius:10px;padding:10px;display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;cursor:pointer">
+    <a href="#matchs" style="background:linear-gradient(90deg,#3a2a66,#2a2240);border-radius:10px;padding:10px;display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;color:#fff;text-decoration:none;cursor:pointer">
       <i class="icon-trophy" style="font-size:18px;color:#d4f53c"></i>
-      <div style="flex:1;line-height:1.3">Premier League<div style="display:flex;align-items:center;gap:4px;font-weight:500;color:#cfc8dc"><span style="width:6px;height:6px;border-radius:50%;background:#3ee07a"></span>Markets are live</div></div>
+      <div style="flex:1;line-height:1.3">Ligue 1<div style="display:flex;align-items:center;gap:4px;font-weight:500;color:#cfc8dc"><span style="width:6px;height:6px;border-radius:50%;background:#3ee07a"></span>Marchés en direct</div></div>
       <i class="icon-chevron-right"></i>
-    </div>
+    </a>
     <nav aria-label="Sur cette page" style="display:flex;flex-direction:column;gap:10px">
       <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="6">
         <div style="display:flex;flex-direction:column;gap:2px;border-bottom:1px solid #231d2e;padding-bottom:10px">
@@ -64,8 +64,8 @@ html{scroll-behavior:smooth}
     <div style="width:36px;height:36px;border-radius:50%;background:#231d2e;display:grid;place-items:center;cursor:pointer"><i class="icon-search"></i></div>
     <div style="display:flex;gap:8px;align-items:center">
       <div style="position:relative;width:40px;height:40px;border-radius:50%;background:#231d2e;display:grid;place-items:center"><i class="icon-message-circle" style="color:#b69cff"></i><span style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:#ff7a3d"></span></div>
-      <button style="background:#231d2e;color:#b69cff;border:0;border-radius:20px;padding:11px 18px;font:700 14px Manrope;cursor:pointer">Sign in</button>
-      <button style="background:#d4f53c;color:#15111d;border:0;border-radius:20px;padding:11px 20px;font:800 14px Manrope;cursor:pointer" style-hover="background:#e3ff5c">Join</button>
+      <button style="background:#231d2e;color:#b69cff;border:0;border-radius:20px;padding:11px 18px;font:700 14px Manrope;cursor:pointer">Connexion</button>
+      <button style="background:#d4f53c;color:#15111d;border:0;border-radius:20px;padding:11px 20px;font:800 14px Manrope;cursor:pointer" style-hover="background:#e3ff5c">S'inscrire</button>
     </div>
   </header>
 
@@ -73,10 +73,10 @@ html{scroll-behavior:smooth}
 
     <section style="position:relative;border:1px solid #2c2538;border-radius:32px;background:radial-gradient(ellipse at 70% 30%,#2a2240,#18131f 70%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;padding:40px 48px;overflow:hidden;min-height:300px">
       <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center">
-        <div style="background:#231d2e;border-radius:0 0 10px 10px;padding:4px 12px;font-size:11px;font-weight:700;position:absolute;top:-40px;left:50%;transform:translateX(-50%);white-space:nowrap"><span style="color:#3ee07a">★</span> Rated 4.7</div>
+        <div style="background:#231d2e;border-radius:0 0 10px 10px;padding:4px 12px;font-size:11px;font-weight:700;position:absolute;top:-40px;left:50%;transform:translateX(-50%);white-space:nowrap"><span style="color:#3ee07a">★</span> Noté 4,7</div>
         <h1 style="font-family:Unbounded;font-weight:800;font-size:24px;line-height:1.25;margin:0;letter-spacing:.3px;text-transform:uppercase;text-wrap:balance">Cloudbet pour les paris sportifs en crypto et le casino en ligne</h1>
-        <div style="font-size:14px;color:#cfc8dc">Up to $2500 Welcome Package</div>
-        <button style="background:#d4f53c;color:#15111d;border:0;border-radius:24px;padding:14px 48px;font:800 15px Manrope;cursor:pointer">Activate now</button>
+        <div style="font-size:14px;color:#cfc8dc">Pack de bienvenue jusqu'à 2 500 €</div>
+        <button style="background:#d4f53c;color:#15111d;border:0;border-radius:24px;padding:14px 48px;font:800 15px Manrope;cursor:pointer">Activer maintenant</button>
         <div style="display:flex;gap:10px;margin-top:10px">
           <sc-for list="{{ socials }}" as="s" hint-placeholder-count="6"><div style="width:40px;height:40px;border-radius:50%;background:#2a2335;display:grid;place-items:center;font-size:17px;cursor:pointer" style-hover="background:#3a3148"><i class="icon-{{ s }}"></i></div></sc-for>
         </div>
@@ -100,16 +100,16 @@ html{scroll-behavior:smooth}
     <section style="display:flex;align-items:center;gap:16px">
       <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#3a3148)"></div>
       <div style="border:1px solid #2c2538;background:#1d1826;border-radius:16px;padding:12px 20px;text-align:center">
-        <div style="font-family:Unbounded;font-weight:700;font-size:12px;letter-spacing:.5px">DEPOSIT OR BUY CRYPTO</div>
+        <div style="font-family:Unbounded;font-weight:700;font-size:12px;letter-spacing:.5px">DÉPOSEZ OU ACHETEZ DES CRYPTOS</div>
         <div style="display:flex;gap:6px;justify-content:center;align-items:center;margin-top:8px;font-size:11px;color:#a79fb6">
-          <sc-for list="{{ coins }}" as="c" hint-placeholder-count="5"><span style="width:20px;height:20px;border-radius:50%;background:{{ c.bg }};display:grid;place-items:center;font-size:10px;font-weight:800;color:#15111d">{{ c.s }}</span></sc-for>+ 30 more
+          <sc-for list="{{ coins }}" as="c" hint-placeholder-count="5"><span style="width:20px;height:20px;border-radius:50%;background:{{ c.bg }};display:grid;place-items:center;font-size:10px;font-weight:800;color:#15111d">{{ c.s }}</span></sc-for>+ 30 autres
         </div>
       </div>
       <div style="flex:1;height:1px;background:linear-gradient(90deg,#3a3148,transparent)"></div>
     </section>
 
     <section style="display:flex;flex-direction:column;gap:14px">
-      <h2 id="retraits-temps-reel" style="font-size:18px;font-weight:800;margin:0">Real-time withdrawals</h2>
+      <h2 id="retraits-temps-reel" style="font-size:18px;font-weight:800;margin:0">Retraits en temps réel</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">
         <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
           <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-radius:14px;background:linear-gradient(180deg,#221c2c,#1a1522)">
@@ -121,7 +121,7 @@ html{scroll-behavior:smooth}
     </section>
 
     <section style="display:flex;flex-direction:column;gap:14px">
-      <div style="display:flex;align-items:baseline;gap:10px"><h2 id="sports" style="font-size:18px;font-weight:800;margin:0">Popular sports</h2></div>
+      <div style="display:flex;align-items:baseline;gap:10px"><h2 id="sports" style="font-size:18px;font-weight:800;margin:0">Sports populaires</h2></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px">
         <sc-for list="{{ sports }}" as="s" hint-placeholder-count="8">
           <div style="background:#1d1826;border-radius:16px;padding:22px 8px;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;font-weight:700;cursor:pointer" style-hover="background:#261f31"><i class="icon-{{ s.icon }}" style="font-size:30px;color:#b69cff"></i>{{ s.label }}</div>
@@ -159,16 +159,16 @@ html{scroll-behavior:smooth}
     <section style="position:relative;border-radius:24px;background:linear-gradient(90deg,#1c1850,#2c2a78 55%,#6e72c4);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;min-height:170px;overflow:hidden;margin-top:20px">
       <img src="./images/casino-promo.webp" alt="Cloudbet casino" loading="lazy" style="align-self:stretch;display:block;width:calc(100% - 28px);height:calc(100% - 28px);min-height:142px;margin:14px;border-radius:16px;object-fit:cover">
       <div style="padding:24px 40px;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
-        <div style="font-family:Unbounded;font-weight:700;font-size:12px;letter-spacing:.5px">STEP INTO THE CASINO</div>
-        <div style="font-family:Unbounded;font-weight:800;font-size:24px;line-height:1.1">EARN UP TO <span style="color:#d4f53c">$2,500</span> IN REAL CASH REWARDS</div>
-        <button style="background:#d4f53c;color:#15111d;border:0;border-radius:22px;padding:12px 48px;font:800 14px Manrope;cursor:pointer;margin-top:6px">Get started</button>
+        <div style="font-family:Unbounded;font-weight:700;font-size:12px;letter-spacing:.5px">ENTREZ DANS LE CASINO</div>
+        <div style="font-family:Unbounded;font-weight:800;font-size:24px;line-height:1.1">GAGNEZ JUSQU'À <span style="color:#d4f53c">2 500 €</span> DE RÉCOMPENSES EN ARGENT RÉEL</div>
+        <button style="background:#d4f53c;color:#15111d;border:0;border-radius:22px;padding:12px 48px;font:800 14px Manrope;cursor:pointer;margin-top:6px">Commencer</button>
       </div>
     </section>
 
     <section style="display:flex;flex-direction:column;gap:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-        <h2 id="casino" style="font-size:18px;font-weight:800;margin:0">Popular games</h2>
-        <div style="background:#1d1826;border-radius:8px;padding:6px 10px;font-size:11px">Airlive2013 wins <span style="color:#3ee07a;font-weight:700">395.30x</span> playing <span style="color:#a79fb6">Lemur Levels</span></div>
+        <h2 id="casino" style="font-size:18px;font-weight:800;margin:0">Jeux populaires</h2>
+        <div style="background:#1d1826;border-radius:8px;padding:6px 10px;font-size:11px">Airlive2013 gagne <span style="color:#3ee07a;font-weight:700">x395,30</span> sur <span style="color:#a79fb6">Lemur Levels</span></div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px">
         <sc-for list="{{ games }}" as="g" hint-placeholder-count="5">
@@ -178,7 +178,7 @@ html{scroll-behavior:smooth}
     </section>
 
     <section style="display:flex;flex-direction:column;gap:14px">
-      <div style="display:flex;align-items:baseline;gap:10px"><h2 id="esports" style="font-size:18px;font-weight:800;margin:0">Popular esports</h2></div>
+      <div style="display:flex;align-items:baseline;gap:10px"><h2 id="esports" style="font-size:18px;font-weight:800;margin:0">Esports populaires</h2></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px">
         <sc-for list="{{ esports }}" as="s" hint-placeholder-count="7">
           <div style="background:#1d1826;border-radius:16px;padding:22px 8px;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;font-weight:700;cursor:pointer" style-hover="background:#261f31"><i class="icon-{{ s.icon }}" style="font-size:30px;color:#b69cff"></i>{{ s.label }}</div>
@@ -207,7 +207,7 @@ html{scroll-behavior:smooth}
           <div style="background:#1d1826;border:1px solid #2c2538;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px">
             <div style="display:flex;align-items:center;gap:12px"><div style="width:48px;height:48px;border-radius:14px;background:#2a2240;display:grid;place-items:center;flex:none"><i class="icon-volleyball" style="font-size:22px;color:#d4f53c"></i></div><h3 style="font-family:Unbounded;font-weight:700;font-size:14px;letter-spacing:.3px;margin:0;color:#fff">Paris sur le football</h3></div>
             <p style="margin:0;font-size:14px;line-height:1.7;color:#bdb5cc;text-wrap:pretty">Sur Cloudbet, vous pouvez parier aussi bien sur « Manchester United » que sur des équipes de deuxième division indonésienne — c'est tout à fait possible. La plateforme propose un large choix d'options de paris sur le football en utilisant des cryptomonnaies. L'offre couvre de nombreuses ligues : de la Premier League anglaise et de la Liga espagnole aux divisions supérieures d'Éthiopie, de Corée du Sud, de Norvège, d'Arabie saoudite et de nombreux autres pays à travers le monde. Voici quelques-uns des meilleurs marchés pour vos paris sur le football sur Cloudbet :</p>
-            <div style="display:flex;flex-wrap:wrap;gap:6px"><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Handicap asiatique</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Les deux équipes marquent</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Total des buts</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Pari sans match nul (Draw No Bet)</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Double chance</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Totali</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Handicap asiatique</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Les deux équipes marquent</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Total des buts</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Pari sans match nul (Draw No Bet)</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Double chance</span><span style="background:#2a2240;color:#e4def0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600">Totaux</span></div>
           </div>
           <div style="background:#1d1826;border:1px solid #2c2538;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px">
             <div style="display:flex;align-items:center;gap:12px"><div style="width:48px;height:48px;border-radius:14px;background:#2a2240;display:grid;place-items:center;flex:none"><i class="icon-circle-dot" style="font-size:22px;color:#d4f53c"></i></div><h3 style="font-family:Unbounded;font-weight:700;font-size:14px;letter-spacing:.3px;margin:0;color:#fff">Cloudbet tennis</h3></div>
@@ -225,7 +225,7 @@ html{scroll-behavior:smooth}
 
       <div class="split" style="display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:40px;align-items:center">
         <div style="display:flex;flex-direction:column;gap:12px"><h2 id="cotes" style="font-size:22px;font-weight:800;margin:0;color:#fff;text-wrap:balance">Cotes, types de paris et expérience utilisateur</h2><p style="margin:0;font-size:14px;line-height:1.7;color:#bdb5cc;text-wrap:pretty">Nous avons conçu Cloudbet en mettant l'accent sur la rapidité. Utilisez le menu principal pour passer des événements d'avant-match aux paris en direct (live) et aux marchés spécifiques à chaque match.</p><p style="margin:0;font-size:14px;line-height:1.7;color:#bdb5cc;text-wrap:pretty">Vous avez la possibilité de choisir entre des cotes décimales, fractionnelles ou américaines. Nous proposons des paris simples, des paris en direct avec mise à jour des cotes en temps réel, ainsi que des paris combinés. Pour chaque grand championnat, comme la Premier League, les limites sont élevées, tandis que pour les sports de niche, ces limites sont plus basses. Notre interface mobile vous permet de parier rapidement sur n’importe quelle taille d’écran.</p></div>
-        <div class="split-visual" role="img" aria-label="Illustration : cotes et ticket de pari" style="display:flex;justify-content:center;align-items:center"><svg width="260" height="200" viewBox="0 0 260 200" fill="none" stroke="#d4f53c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M40 18c30-2 90-3 128 0 3 40 3 110 0 150-40 3-98 2-128 0-3-44-3-106 0-150z"/><path d="M58 44h70M58 60h46" opacity=".7"/><path d="M56 86c20-1 70-1 92 0M56 114c20-1 70-1 92 0M56 142c20-1 70-1 92 0" stroke-width="2" opacity=".45"/><text x="58" y="104" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">1.95</text><text x="112" y="104" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">2.10</text><text x="58" y="132" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">3/1</text><text x="112" y="132" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">+150</text><path d="M150 170c14-10 22-24 34-30s18 6 28-6 14-40 30-62"/><path d="M224 70l18 2-2 18"/><circle cx="184" cy="140" r="4" fill="#d4f53c"/><circle cx="212" cy="134" r="4" fill="#d4f53c"/></svg></div>
+        <div class="split-visual" role="img" aria-label="Illustration : cotes et ticket de pari" style="display:flex;justify-content:center;align-items:center"><svg width="260" height="200" viewBox="0 0 260 200" fill="none" stroke="#d4f53c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M40 18c30-2 90-3 128 0 3 40 3 110 0 150-40 3-98 2-128 0-3-44-3-106 0-150z"/><path d="M58 44h70M58 60h46" opacity=".7"/><path d="M56 86c20-1 70-1 92 0M56 114c20-1 70-1 92 0M56 142c20-1 70-1 92 0" stroke-width="2" opacity=".45"/><text x="58" y="104" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">1,95</text><text x="112" y="104" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">2,10</text><text x="58" y="132" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">3/1</text><text x="112" y="132" fill="#d4f53c" stroke="none" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="14">+150</text><path d="M150 170c14-10 22-24 34-30s18 6 28-6 14-40 30-62"/><path d="M224 70l18 2-2 18"/><circle cx="184" cy="140" r="4" fill="#d4f53c"/><circle cx="212" cy="134" r="4" fill="#d4f53c"/></svg></div>
       </div>
 
       <section style="border-radius:24px;background:linear-gradient(90deg,#1c1850,#2c2a78 60%,#4d4fa6);padding:32px 36px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:32px;align-items:center">
@@ -282,7 +282,7 @@ html{scroll-behavior:smooth}
         <div class="split-visual" role="img" aria-label="Téléphone avec le logo Cloudbet" style="display:flex;justify-content:center;align-items:center"><div style="position:relative;width:150px;height:290px;border:3px solid #d4f53c;border-radius:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#1a1522;box-shadow:0 0 0 6px #d4f53c14"><span style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:54px;height:14px;border-radius:8px;background:#d4f53c;opacity:.9"></span><span style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:48px;height:4px;border-radius:2px;background:#d4f53c;opacity:.6"></span><img src="./images/logo.png" alt="" width="84" height="38" style="display:block;width:84px;height:auto"><span style="font-family:Unbounded,system-ui,sans-serif;font-weight:800;font-size:14px;letter-spacing:1px;color:#fff">CLOUDBET</span></div></div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:12px"><h2 id="casino-live" style="font-size:22px;font-weight:800;margin:0;color:#fff;text-wrap:balance">Cloudbet casino: games and live casino</h2><p style="margin:0;font-size:14px;line-height:1.7;color:#bdb5cc;text-wrap:pretty">Le crypto-casino Cloudbet propose tous les meilleurs jeux et offre aux joueurs une grande variété de titres. Bien sûr, la plupart des jeux sont des machines à sous, parmi lesquelles figurent certains des titres les plus populaires, tels que Raging Rex 3, Majestic King, Money Train 4 et bien d’autres encore. </p><p style="margin:0;font-size:14px;line-height:1.7;color:#bdb5cc;text-wrap:pretty">Ils proposent également une gamme variée de machines à sous classiques et à jackpot progressif, ainsi que des machines à sous, du blackjack, de la roulette, du baccarat et un casino live Cloudbet, où vous pouvez clairement voir le pot en temps réel.</p></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><h2 id="casino-live" style="font-size:22px;font-weight:800;margin:0;color:#fff;text-wrap:balance">Cloudbet casino : jeux et casino live</h2><p style="margin:0;font-size:14px;line-height:1.7;color:#bdb5cc;text-wrap:pretty">Le crypto-casino Cloudbet propose tous les meilleurs jeux et offre aux joueurs une grande variété de titres. Bien sûr, la plupart des jeux sont des machines à sous, parmi lesquelles figurent certains des titres les plus populaires, tels que Raging Rex 3, Majestic King, Money Train 4 et bien d’autres encore. </p><p style="margin:0;font-size:14px;line-height:1.7;color:#bdb5cc;text-wrap:pretty">Ils proposent également une gamme variée de machines à sous classiques et à jackpot progressif, ainsi que des machines à sous, du blackjack, de la roulette, du baccarat et un casino live Cloudbet, où vous pouvez clairement voir le pot en temps réel.</p></div>
 
       <section style="background:#1d1826;border:1px solid #2c2538;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;flex-direction:row;gap:20px;align-items:flex-start;padding:28px">
         <div style="width:48px;height:48px;border-radius:14px;background:#2a2240;display:grid;place-items:center;flex:none"><i class="icon-crown" style="font-size:22px;color:#d4f53c"></i></div>
@@ -318,7 +318,7 @@ html{scroll-behavior:smooth}
         </div>
       </sc-for>
     </div>
-    <div style="border-top:1px solid #231d2e;padding:20px 24px;text-align:center;font-size:11px;color:#6f6782">© 2026 Cloudbet. Gambling can be addictive. Play responsibly. 18+</div>
+    <div style="border-top:1px solid #231d2e;padding:20px 24px;text-align:center;font-size:11px;color:#6f6782">© 2026 Cloudbet. Les jeux d'argent et de hasard peuvent être dangereux : pertes d'argent, conflits familiaux, addiction… Retrouvez nos conseils sur joueurs-info-service.fr (09 74 75 13 13, appel non surtaxé). Interdit aux moins de 18 ans.</div>
   </footer>
 </main>
 </div>
@@ -358,21 +358,21 @@ class Component extends DCLogic {
       name: n, border: n === lg ? '#8b5cf6' : '#2c2538', bg: n === lg ? '#2a2044' : '#1d1826', select: () => this.setState({ league: n, more: false }) }));
     const matches = cur.matches.slice(0, s.more ? cur.matches.length : 2).map((m, mi) => ({ time: m.time, rows: m.rows.map(([team,color,color2,odds], ri) => ({ team, color, color2, odds: odds.map(([line,price], oi) => {
       const k = `${lg}-${mi}-${ri}-${oi}`, on = !!s.picks[k];
-      return { line, price, bg: on ? '#8b5cf6' : 'transparent', color: on ? '#fff' : '#d4f53c', pick: () => this.setState(st => ({ picks: { ...st.picks, [k]: !st.picks[k] } })) };
+      return { line, price: price.replace('.', ','), bg: on ? '#8b5cf6' : 'transparent', color: on ? '#fff' : '#d4f53c', pick: () => this.setState(st => ({ picks: { ...st.picks, [k]: !st.picks[k] } })) };
     }) })) }));
     return {
       sideW: collapsed ? '72px' : '220px', modeCols: collapsed ? '1fr' : 'repeat(3,1fr)', expanded: !collapsed,
       collapseIcon: collapsed ? 'panel-left-open' : 'panel-left-close', toggleSide: () => this.setState({ collapsed: !collapsed }),
       modes: [{icon:'trophy',label:'Sports',href:'#sports'},{icon:'dice-5',label:'Casino',href:'#casino'},{icon:'gamepad-2',label:'Esports',href:'#esports'}].map(m => collapsed ? {...m,title:m.label,label:''} : {...m,title:m.label}),
       navGroups: groups, socials: ['chrome','wallet','apple','twitter','send','github'],
-      perks: [{icon:'gift',title:'WELCOME PACKAGE',text:'Make your first deposit to unlock real cash rewards up to $2,500.'},{icon:'crown',title:'VIP CLUB',text:'Exclusive rewards & most sought-after experiences.'},{icon:'zap',title:'FAST WITHDRAWAL',text:'90% of our withdrawals take less than 2 minutes.'}],
+      perks: [{icon:'gift',title:'PACK DE BIENVENUE',text:'Effectuez votre premier dépôt pour débloquer jusqu\'à 2 500 € de récompenses en argent réel.'},{icon:'crown',title:'CLUB VIP',text:'Des récompenses exclusives et des expériences parmi les plus recherchées.'},{icon:'zap',title:'RETRAIT RAPIDE',text:'90 % de nos retraits sont traités en moins de 2 minutes.'}],
       coins: [{s:'B',bg:'#f7931a'},{s:'T',bg:'#26a17b'},{s:'E',bg:'#e6e6f0'},{s:'X',bg:'#c9c9d4'},{s:'L',bg:'#bfbbd0'}],
-      stats: [{value:'$1,107,684',label:'Last 24 hours',sub:'Value (USDT)'},{value:'1,033,159',label:'Lifetime',sub:'Withdrawals since 2013'},{value:'< 1 MINUTE',label:'Average speed',sub:'Withdrawal'}],
-      sports: [['volleyball','Soccer'],['circle-dot','Tennis'],['goal','American Football'],['dribbble','Basketball'],['target','Baseball'],['swords','MMA'],['flag','Aussie Rules']].map(([icon,label])=>({icon,label})),
+      stats: [{value:'1 107 684 USDT',label:'Dernières 24 heures',sub:'Montant retiré'},{value:'1 033 159',label:'Au total',sub:'Retraits depuis 2013'},{value:'< 1 MINUTE',label:'Vitesse moyenne',sub:'Par retrait'}],
+      sports: [['volleyball','Football'],['egg','Rugby'],['circle-dot','Tennis'],['dribbble','Basket'],['hand','Handball'],['bike','Cyclisme'],['swords','MMA']].map(([icon,label])=>({icon,label})),
       leagues, activeLeague: lg, cols: cur.cols, nCols: cur.cols.length, matches, moreLabel: s.more ? 'Voir moins' : 'Voir plus', toggleMore: () => this.setState({ more: !s.more }),
       slipCount: Object.values(s.picks).filter(Boolean).length,
       games: [['supernova-galaxy-orbs.webp','Supernova Galaxy Orbs Hold & Win'],['book-of-hidden-tombs.webp','Book of Hidden Tombs'],['lucky-caiman.jpg','Lucky Caiman'],['3-golden-chests.webp','3 Golden Chests'],['culinary-clash.jpg','Culinary Clash']].map(([f,title])=>({img:'./images/games/'+f,title})),
-      esports: [['crosshair','Counter-Strike'],['sword','Dota 2'],['gamepad-2','FIFA'],['dribbble','NBA2K'],['zap','Valorant'],['shield','League of Legends'],['target','Rainbow Six']].map(([icon,label])=>({icon,label})),
+      esports: [['shield','League of Legends'],['crosshair','Counter-Strike 2'],['zap','Valorant'],['car','Rocket League'],['target','Rainbow Six Siege'],['gamepad-2','EA Sports FC'],['sword','Dota 2']].map(([icon,label])=>({icon,label})),
       aboutH: s.about ? '600px' : '70px', aboutLabel: s.about ? 'Show less' : 'Show more', toggleAbout: () => this.setState({ about: !s.about }),
       footSocials: ['instagram','send','twitter','youtube','message-square','github','radio'],
       footCols: [
