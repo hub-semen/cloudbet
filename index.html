@@ -130,19 +130,19 @@ html{scroll-behavior:smooth}
     </section>
 
     <section style="border:1px solid #2c2538;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:14px">
-      <div id="matchs" style="display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800"><i class="icon-flame" style="color:#a472ff"></i>Popular</div>
+      <div id="matchs" style="display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800"><i class="icon-flame" style="color:#a472ff"></i>Populaire en France</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <sc-for list="{{ leagues }}" as="l" hint-placeholder-count="8">
           <button onClick="{{ l.select }}" style="border:1px solid {{ l.border }};background:{{ l.bg }};color:#e4def0;border-radius:18px;padding:7px 14px;font:600 12px Manrope;cursor:pointer">{{ l.name }}</button>
         </sc-for>
       </div>
       <div style="background:#1a1522;border-radius:14px;overflow:hidden">
-        <div style="display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));padding:10px 16px;font-size:11px;color:#8d85a0;background:#1f1a28"><span>{{ activeLeague }}</span><span style="text-align:center">Run Line</span><span style="text-align:center">Total</span><span style="text-align:center">Money Line</span></div>
+        <div style="display:grid;grid-template-columns:minmax(0,2fr) repeat({{ nCols }},minmax(0,1fr));padding:10px 16px;font-size:11px;color:#8d85a0;background:#1f1a28"><span>{{ activeLeague }}</span><sc-for list="{{ cols }}" as="c" hint-placeholder-count="3"><span style="text-align:center">{{ c }}</span></sc-for></div>
         <sc-for list="{{ matches }}" as="m" hint-placeholder-count="2">
           <div style="border-top:1px solid #241e2e;padding:12px 16px">
             <sc-for list="{{ m.rows }}" as="r" hint-placeholder-count="2">
-              <div style="display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));align-items:center;padding:3px 0">
-                <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.color }}"></span>{{ r.team }}</div>
+              <div style="display:grid;grid-template-columns:minmax(0,2fr) repeat({{ nCols }},minmax(0,1fr));align-items:center;padding:3px 0">
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;min-width:0"><span style="display:flex;flex:none"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.color }}"></span><sc-if value="{{ r.color2 }}"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.color2 }};margin-left:-3px;box-shadow:0 0 0 2px #1a1522"></span></sc-if></span><span style="overflow:hidden;text-overflow:ellipsis">{{ r.team }}</span></div>
                 <sc-for list="{{ r.odds }}" as="o" hint-placeholder-count="3">
                   <button onClick="{{ o.pick }}" style="justify-self:center;border:0;border-radius:8px;padding:6px 10px;background:{{ o.bg }};color:#e4def0;font:600 12px Manrope;cursor:pointer;display:flex;gap:6px;font-variant-numeric:tabular-nums" style-hover="background:#2e263b"><span style="color:#a79fb6">{{ o.line }}</span><span style="color:{{ o.color }}">{{ o.price }}</span></button>
                 </sc-for>
@@ -153,6 +153,7 @@ html{scroll-behavior:smooth}
         </sc-for>
       </div>
       <button onClick="{{ toggleMore }}" style="align-self:center;background:#2a2335;color:#b69cff;border:0;border-radius:20px;padding:10px 20px;font:700 13px Manrope;cursor:pointer">{{ moreLabel }}</button>
+      <div style="font-size:11px;color:#6f6782;text-align:center">Horaires de Paris. Cotes indicatives, susceptibles d'évoluer.</div>
     </section>
 
     <section style="position:relative;border-radius:24px;background:linear-gradient(90deg,#1c1850,#2c2a78 55%,#6e72c4);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;min-height:170px;overflow:hidden;margin-top:20px">
@@ -324,7 +325,7 @@ html{scroll-behavior:smooth}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;startCollapsed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { collapsed: false, open: { sport: true, bonus: true, paiements: true, infos: true }, league: 'MLB', more: false, about: false, picks: {} };
+  state = { collapsed: false, open: { sport: true, bonus: true, paiements: true, infos: true }, league: 'Ligue 1', more: false, about: false, picks: {} };
   renderVals() {
     const s = this.state, collapsed = s.collapsed ?? this.props.startCollapsed;
     const groups = [
@@ -335,15 +336,38 @@ class Component extends DCLogic {
     ].map(g => ({ title: g.title, icon: g.icon, open: !!s.open[g.key], chev: s.open[g.key] ? 'up' : 'down',
       toggle: () => this.setState(st => ({ open: { ...st.open, [g.key]: !st.open[g.key] } })),
       items: g.items.map(([icon,label,id]) => ({ icon, label, href: '#' + id })) }));
-    const leagues = ['MLB','NFL','NCAAF','UFC','Major League Soccer','International Friendlies','UEFA Nations League','Virtual NBA','GT Nations League'].map(n => ({
-      name: n, border: n === s.league ? '#8b5cf6' : '#2c2538', bg: n === s.league ? '#2a2044' : '#1d1826', select: () => this.setState({ league: n }) }));
-    const raw = [
-      { time: 'Today • 5:05 PM', rows: [['BOS Red Sox','#d9304a',[['+1.5','1.55'],['O 6.5','1.97'],['','2.00']]],['CHI Cubs','#8b8fd9',[['-1.5','2.50'],['U 6.5','1.88'],['','1.89']]]] },
-      { time: 'Today • 7:10 PM', rows: [['NY Yankees','#6b7a99',[['-1.5','2.55'],['O 8.5','1.88'],['','1.70']]],['TOR Blue Jays','#3b6fd9',[['+1.5','1.52'],['U 8.5','1.94'],['','2.18']]]] },
-      { time: 'Today • 9:40 PM', rows: [['LA Dodgers','#2f6fe0',[['-1.5','2.10'],['O 7.5','1.91'],['','1.62']]],['SD Padres','#a07a4a',[['+1.5','1.72'],['U 7.5','1.91'],['','2.35']]]] },
-    ];
-    const matches = raw.slice(0, s.more ? 3 : 1).map((m, mi) => ({ time: m.time, rows: m.rows.map(([team,color,odds], ri) => ({ team, color, odds: odds.map(([line,price], oi) => {
-      const k = `${mi}-${ri}-${oi}`, on = !!s.picks[k];
+    const G = (a,b,c) => [['',a],['',b],['',c]];
+    const data = {
+      'Ligue 1': { round: '6e journée', cols: ['1','N','2'], matches: [
+        { time: 'Ven. 9 oct. • 20h45', rows: [['RC Lens – Olympique Lyonnais','#e8c200','#d8232a',G('2.30','3.40','3.00')]] },
+        { time: 'Sam. 10 oct. • 20h45', rows: [['Paris Saint-Germain – Le Mans FC','#004170','#c8102e',G('1.15','8.00','17.00')]] },
+        { time: 'Dim. 11 oct. • 20h45', rows: [['ESTAC Troyes – Olympique de Marseille','#0055a4','#2faee0',G('4.60','3.90','1.70')]] },
+      ] },
+      'Ligue des champions': { round: '2e journée', cols: ['1','N','2'], matches: [
+        { time: 'Mar. 13 oct. • 18h45', rows: [['RC Lens – Sporting CP','#e8c200','#008057',G('2.45','3.40','2.85')]] },
+        { time: 'Mar. 13 oct. • 21h00', rows: [['Arsenal – LOSC Lille','#ef0107','#e01e13',G('1.50','4.30','6.25')]] },
+        { time: 'Mer. 14 oct. • 21h00', rows: [['Manchester City – Paris Saint-Germain','#6cabdd','#004170',G('2.10','3.70','3.20')]] },
+      ] },
+      'Ligue des nations': { round: 'Phase de groupes', cols: ['1','N','2'], matches: [
+        { time: 'Ven. 2 oct. • 20h45 • Stade de France', rows: [['France – Italie','#002654','#0066b3',G('1.85','3.50','4.50')]] },
+        { time: 'Lun. 5 oct. • 20h45 • Stade de France', rows: [['France – Belgique','#002654','#e30613',G('1.95','3.60','3.80')]] },
+      ] },
+      'Top 14': { round: '5e journée', cols: ['1','N','2'], matches: [
+        { time: 'Sam. 3 oct. • 14h30', rows: [['Union Bordeaux-Bègles – LOU Rugby','#6b1e3a','#d2001f',G('1.12','28.00','6.00')]] },
+        { time: 'Sam. 3 oct. • 16h35', rows: [['Racing 92 – USA Perpignan','#8ecae6','#c8102e',G('1.30','22.00','3.40')]] },
+        { time: 'Sam. 3 oct. • 21h00', rows: [['Castres Olympique – Stade Toulousain','#0057a8','#d2001f',G('3.60','23.00','1.28')]] },
+      ] },
+      'NBA': { round: 'Soirée d’ouverture', cols: ['Handicap','Total','Vainqueur'], matches: [
+        { time: 'Mar. 20 oct. • 21h00', rows: [['Boston Celtics','#007a33','',[['+1.5','1.91'],['O 219.5','1.91'],['','1.95']]],['Detroit Pistons','#c8102e','',[['-1.5','1.91'],['U 219.5','1.91'],['','1.87']]]] },
+        { time: 'Mer. 21 oct. • 00h30', rows: [['Philadelphia 76ers','#006bb6','',[['+4.5','1.91'],['O 224.5','1.90'],['','2.55']]],['New York Knicks','#f58426','',[['-4.5','1.91'],['U 224.5','1.92'],['','1.53']]]] },
+        { time: 'Mer. 21 oct. • 03h30', rows: [['Oklahoma City Thunder','#007ac1','',[['-2.5','1.91'],['O 226.5','1.91'],['','1.65']]],['San Antonio Spurs (Wembanyama)','#c4ced4','',[['+2.5','1.91'],['U 226.5','1.91'],['','2.25']]]] },
+      ] },
+    };
+    const lg = data[s.league] ? s.league : 'Ligue 1', cur = data[lg];
+    const leagues = Object.keys(data).map(n => ({
+      name: n, border: n === lg ? '#8b5cf6' : '#2c2538', bg: n === lg ? '#2a2044' : '#1d1826', select: () => this.setState({ league: n, more: false }) }));
+    const matches = cur.matches.slice(0, s.more ? cur.matches.length : 1).map((m, mi) => ({ time: m.time, rows: m.rows.map(([team,color,color2,odds], ri) => ({ team, color, color2, odds: odds.map(([line,price], oi) => {
+      const k = `${lg}-${mi}-${ri}-${oi}`, on = !!s.picks[k];
       return { line, price, bg: on ? '#8b5cf6' : 'transparent', color: on ? '#fff' : '#d4f53c', pick: () => this.setState(st => ({ picks: { ...st.picks, [k]: !st.picks[k] } })) };
     }) })) }));
     return {
@@ -355,7 +379,7 @@ class Component extends DCLogic {
       coins: [{s:'B',bg:'#f7931a'},{s:'T',bg:'#26a17b'},{s:'E',bg:'#e6e6f0'},{s:'X',bg:'#c9c9d4'},{s:'L',bg:'#bfbbd0'}],
       stats: [{value:'$1,107,684',label:'Last 24 hours',sub:'Value (USDT)'},{value:'1,033,159',label:'Lifetime',sub:'Withdrawals since 2013'},{value:'< 1 MINUTE',label:'Average speed',sub:'Withdrawal'}],
       sports: [['volleyball','Soccer'],['circle-dot','Tennis'],['goal','American Football'],['dribbble','Basketball'],['target','Baseball'],['swords','MMA'],['flag','Aussie Rules']].map(([icon,label])=>({icon,label})),
-      leagues, activeLeague: s.league, matches, moreLabel: s.more ? 'Show less' : 'Show more', toggleMore: () => this.setState({ more: !s.more }),
+      leagues, activeLeague: lg + ' · ' + cur.round, cols: cur.cols, nCols: cur.cols.length, matches, moreLabel: s.more ? 'Voir moins' : 'Voir plus', toggleMore: () => this.setState({ more: !s.more }),
       slipCount: Object.values(s.picks).filter(Boolean).length,
       games: [['supernova-galaxy-orbs.webp','Supernova Galaxy Orbs Hold & Win'],['book-of-hidden-tombs.webp','Book of Hidden Tombs'],['lucky-caiman.jpg','Lucky Caiman'],['3-golden-chests.webp','3 Golden Chests'],['culinary-clash.jpg','Culinary Clash']].map(([f,title])=>({img:'./images/games/'+f,title})),
       esports: [['crosshair','Counter-Strike'],['sword','Dota 2'],['gamepad-2','FIFA'],['dribbble','NBA2K'],['zap','Valorant'],['shield','League of Legends'],['target','Rainbow Six']].map(([icon,label])=>({icon,label})),
