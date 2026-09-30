@@ -331,7 +331,7 @@ class Component extends DCLogic {
       perks: [{icon:'gift',title:'WELCOME PACKAGE',text:'Make your first deposit to unlock real cash rewards up to $2,500.'},{icon:'crown',title:'VIP CLUB',text:'Exclusive rewards & most sought-after experiences.'},{icon:'zap',title:'FAST WITHDRAWAL',text:'90% of our withdrawals take less than 2 minutes.'}],
       coins: [{s:'B',bg:'#f7931a'},{s:'T',bg:'#26a17b'},{s:'E',bg:'#e6e6f0'},{s:'X',bg:'#c9c9d4'},{s:'L',bg:'#bfbbd0'}],
       stats: [{value:'$1,107,684',label:'Last 24 hours',sub:'Value (USDT)'},{value:'1,033,159',label:'Lifetime',sub:'Withdrawals since 2013'},{value:'< 1 MINUTE',label:'Average speed',sub:'Withdrawal'}],
-      sports: [['volleyball','Soccer'],['circle-dot','Tennis'],['goal','American Football'],['dribbble','Basketball'],['target','Baseball'],['swords','MMA'],['flag','Aussie Rules'],['feather','Badminton']].map(([icon,label])=>({icon,label})),
+      sports: [['volleyball','Soccer'],['circle-dot','Tennis'],['goal','American Football'],['dribbble','Basketball'],['target','Baseball'],['swords','MMA'],['flag','Aussie Rules']].map(([icon,label])=>({icon,label})),
       leagues, activeLeague: s.league, matches, moreLabel: s.more ? 'Show less' : 'Show more', toggleMore: () => this.setState({ more: !s.more }),
       slipCount: Object.values(s.picks).filter(Boolean).length,
       games: ['game tile','game tile','game tile','game tile','game tile','game tile'],
