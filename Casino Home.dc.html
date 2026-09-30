@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css">
+<style>
+body{margin:0;background:#15111d;color:#ece8f4;font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#b69cff;text-decoration:underline}a:hover{color:#d4f53c}
+*{box-sizing:border-box}
+</style>
+</helmet>
+<div style="display:grid;grid-template-columns:auto minmax(0,1fr);min-height:100vh">
+
+<aside style="width:{{ sideW }};border-right:1px solid #231d2e;padding:12px 10px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;height:100vh;overflow-y:auto;background:#15111d">
+  <div style="font-family:Unbounded;font-weight:800;font-size:18px;letter-spacing:1px;padding:4px 6px;color:#fff">{{ logoText }}</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+    <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
+      <div style="background:#231d2e;border-radius:10px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:#cfc8dc;cursor:pointer" style-hover="background:#2e263b"><i class="icon-{{ m.icon }}" style="font-size:16px"></i><span>{{ m.label }}</span></div>
+    </sc-for>
+  </div>
+  <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}">
+    <div style="background:linear-gradient(90deg,#3a2a66,#2a2240);border-radius:10px;padding:10px;display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;cursor:pointer">
+      <i class="icon-trophy" style="font-size:18px;color:#d4f53c"></i>
+      <div style="flex:1;line-height:1.3">Premier League<div style="display:flex;align-items:center;gap:4px;font-weight:500;color:#cfc8dc"><span style="width:6px;height:6px;border-radius:50%;background:#3ee07a"></span>Markets are live</div></div>
+      <i class="icon-chevron-right"></i>
+    </div>
+    <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="4">
+      <div style="display:flex;flex-direction:column;gap:2px;border-bottom:1px solid #231d2e;padding-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;padding:4px 6px;cursor:pointer" onClick="{{ g.toggle }}">{{ g.title }}<i class="icon-chevron-{{ g.chev }}" style="background:#231d2e;border-radius:6px;padding:2px;font-size:12px"></i></div>
+        <sc-if value="{{ g.open }}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#bdb5cc;padding:6px;border-radius:8px;cursor:pointer" style-hover="background:#221c2c;color:#fff"><i class="icon-{{ it.icon }}" style="font-size:14px"></i><span>{{ it.label }}</span><sc-if value="{{ it.popular }}"><span style="background:#3a2a66;color:#b69cff;font-size:10px;padding:1px 6px;border-radius:6px">Popular</span></sc-if></div>
+          </sc-for>
+        </sc-if>
+      </div>
+    </sc-for>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#bdb5cc;padding:6px"><i class="icon-crown"></i><span style="flex:1">VIP Club</span><i class="icon-external-link"></i></div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#bdb5cc;padding:6px"><i class="icon-newspaper"></i><span style="flex:1">Blog</span><i class="icon-external-link"></i></div>
+    </div>
+  </sc-if>
+  <div style="display:flex;justify-content:flex-end;margin-top:auto"><i class="icon-{{ collapseIcon }}" onClick="{{ toggleSide }}" style="font-size:18px;color:#cfc8dc;cursor:pointer;padding:6px"></i></div>
+</aside>
+
+<main style="min-width:0">
+  <header style="display:flex;justify-content:space-between;align-items:center;padding:12px 24px;position:sticky;top:0;background:rgba(21,17,29,.9);backdrop-filter:blur(8px);z-index:5">
+    <div style="width:36px;height:36px;border-radius:50%;background:#231d2e;display:grid;place-items:center;cursor:pointer"><i class="icon-search"></i></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <div style="position:relative;width:40px;height:40px;border-radius:50%;background:#231d2e;display:grid;place-items:center"><i class="icon-message-circle" style="color:#b69cff"></i><span style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:#ff7a3d"></span></div>
+      <div style="display:flex;align-items:center;gap:6px;background:#231d2e;border-radius:20px;padding:10px 14px;font-size:13px;font-weight:700"><i class="icon-ticket"></i>Slip {{ slipCount }}</div>
+      <button style="background:#231d2e;color:#b69cff;border:0;border-radius:20px;padding:11px 18px;font:700 14px Manrope;cursor:pointer">Sign in</button>
+      <button style="background:#d4f53c;color:#15111d;border:0;border-radius:20px;padding:11px 20px;font:800 14px Manrope;cursor:pointer" style-hover="background:#e3ff5c">Join</button>
+    </div>
+  </header>
+
+  <div style="max-width:1220px;margin:0 auto;padding:8px 24px 40px;display:flex;flex-direction:column;gap:36px">
+
+    <section style="position:relative;border:1px solid #2c2538;border-radius:32px;background:radial-gradient(ellipse at 70% 30%,#2a2240,#18131f 70%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;padding:40px 48px;overflow:hidden;min-height:300px">
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center">
+        <div style="background:#231d2e;border-radius:0 0 10px 10px;padding:4px 12px;font-size:11px;font-weight:700;position:absolute;top:0;left:15%"><span style="color:#3ee07a">★</span> Rated 4.7</div>
+        <h1 style="font-family:Unbounded;font-weight:800;font-size:26px;line-height:1.15;margin:0;letter-spacing:.5px">#1 CRYPTO CASINO<br>&amp; SPORTSBOOK</h1>
+        <div style="font-size:14px;color:#cfc8dc">Up to $2500 Welcome Package</div>
+        <button style="background:#d4f53c;color:#15111d;border:0;border-radius:24px;padding:14px 48px;font:800 15px Manrope;cursor:pointer">Activate now</button>
+        <div style="display:flex;gap:10px;margin-top:10px">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="6"><div style="width:40px;height:40px;border-radius:50%;background:#2a2335;display:grid;place-items:center;font-size:17px;cursor:pointer" style-hover="background:#3a3148"><i class="icon-{{ s }}"></i></div></sc-for>
+        </div>
+      </div>
+      <div style="position:relative;border-radius:20px;background:repeating-linear-gradient(135deg,#221c2c 0 10px,#1d1826 10px 20px);display:grid;place-items:center;font:12px ui-monospace,monospace;color:#7d7390;min-height:240px">hero image — athletes / ambassadors</div>
+      <div style="position:absolute;bottom:14px;left:62%;display:flex;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:#4a4058"></span><span style="width:6px;height:6px;border-radius:50%;background:#8b5cf6"></span></div>
+    </section>
+
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <sc-for list="{{ perks }}" as="p" hint-placeholder-count="3">
+        <div style="display:flex;gap:16px;align-items:center;padding:22px;border-radius:20px;background:#1d1826;border:1px solid #2c2538;border-bottom:2px solid #d4f53c55">
+          <div style="width:60px;height:60px;border-radius:16px;background:#2a2240;display:grid;place-items:center;flex:none"><i class="icon-{{ p.icon }}" style="font-size:28px;color:#d4f53c"></i></div>
+          <div><div style="font-family:Unbounded;font-weight:700;font-size:12px;letter-spacing:.5px">{{ p.title }}</div><div style="font-size:12px;color:#a79fb6;margin-top:6px;line-height:1.5;text-wrap:pretty">{{ p.text }}</div></div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="display:flex;align-items:center;gap:16px">
+      <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#3a3148)"></div>
+      <div style="border:1px solid #2c2538;background:#1d1826;border-radius:16px;padding:12px 20px;text-align:center">
+        <div style="font-family:Unbounded;font-weight:700;font-size:12px;letter-spacing:.5px">DEPOSIT OR BUY CRYPTO</div>
+        <div style="display:flex;gap:6px;justify-content:center;align-items:center;margin-top:8px;font-size:11px;color:#a79fb6">
+          <sc-for list="{{ coins }}" as="c" hint-placeholder-count="5"><span style="width:20px;height:20px;border-radius:50%;background:{{ c.bg }};display:grid;place-items:center;font-size:10px;font-weight:800;color:#15111d">{{ c.s }}</span></sc-for>+ 30 more
+        </div>
+      </div>
+      <div style="flex:1;height:1px;background:linear-gradient(90deg,#3a3148,transparent)"></div>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:14px">
+      <h2 style="font-size:18px;font-weight:800;margin:0">Real-time withdrawals</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-radius:14px;background:linear-gradient(180deg,#221c2c,#1a1522)">
+            <div style="font-size:18px;font-weight:800;font-variant-numeric:tabular-nums">{{ s.value }}</div>
+            <div style="text-align:right;font-size:11px;color:#a79fb6;line-height:1.4"><div style="color:#fff;font-weight:700">{{ s.label }}</div>{{ s.sub }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:baseline;gap:10px"><h2 style="font-size:18px;font-weight:800;margin:0">Popular sports</h2><a href="#" style="font-size:12px;color:#a79fb6">View all</a></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px">
+        <sc-for list="{{ sports }}" as="s" hint-placeholder-count="8">
+          <div style="background:#1d1826;border-radius:16px;padding:22px 8px;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;font-weight:700;cursor:pointer" style-hover="background:#261f31"><i class="icon-{{ s.icon }}" style="font-size:30px;color:#b69cff"></i>{{ s.label }}</div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="border:1px solid #2c2538;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800"><i class="icon-flame" style="color:#a472ff"></i>Popular</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ leagues }}" as="l" hint-placeholder-count="8">
+          <button onClick="{{ l.select }}" style="border:1px solid {{ l.border }};background:{{ l.bg }};color:#e4def0;border-radius:18px;padding:7px 14px;font:600 12px Manrope;cursor:pointer">{{ l.name }}</button>
+        </sc-for>
+      </div>
+      <div style="background:#1a1522;border-radius:14px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));padding:10px 16px;font-size:11px;color:#8d85a0;background:#1f1a28"><span>{{ activeLeague }}</span><span style="text-align:center">Run Line</span><span style="text-align:center">Total</span><span style="text-align:center">Money Line</span></div>
+        <sc-for list="{{ matches }}" as="m" hint-placeholder-count="2">
+          <div style="border-top:1px solid #241e2e;padding:12px 16px">
+            <sc-for list="{{ m.rows }}" as="r" hint-placeholder-count="2">
+              <div style="display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));align-items:center;padding:3px 0">
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.color }}"></span>{{ r.team }}</div>
+                <sc-for list="{{ r.odds }}" as="o" hint-placeholder-count="3">
+                  <button onClick="{{ o.pick }}" style="justify-self:center;border:0;border-radius:8px;padding:6px 10px;background:{{ o.bg }};color:#e4def0;font:600 12px Manrope;cursor:pointer;display:flex;gap:6px;font-variant-numeric:tabular-nums" style-hover="background:#2e263b"><span style="color:#a79fb6">{{ o.line }}</span><span style="color:{{ o.color }}">{{ o.price }}</span></button>
+                </sc-for>
+              </div>
+            </sc-for>
+            <div style="font-size:11px;color:#6f6782;margin-top:6px">{{ m.time }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ toggleMore }}" style="align-self:center;background:#2a2335;color:#b69cff;border:0;border-radius:20px;padding:10px 20px;font:700 13px Manrope;cursor:pointer">{{ moreLabel }}</button>
+    </section>
+
+    <section style="position:relative;border-radius:24px;background:linear-gradient(90deg,#1c1850,#2c2a78 55%,#6e72c4);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;min-height:170px;overflow:hidden;margin-top:20px">
+      <div style="align-self:stretch;margin:14px;border-radius:16px;background:repeating-linear-gradient(135deg,#ffffff10 0 10px,#ffffff06 10px 20px);display:grid;place-items:center;font:12px ui-monospace,monospace;color:#b7b4e6">casino promo illustration</div>
+      <div style="padding:24px 40px;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+        <div style="font-family:Unbounded;font-weight:700;font-size:12px;letter-spacing:.5px">STEP INTO THE CASINO</div>
+        <div style="font-family:Unbounded;font-weight:800;font-size:24px;line-height:1.1">EARN UP TO <span style="color:#d4f53c">$2,500</span> IN REAL CASH REWARDS</div>
+        <button style="background:#d4f53c;color:#15111d;border:0;border-radius:22px;padding:12px 48px;font:800 14px Manrope;cursor:pointer;margin-top:6px">Get started</button>
+      </div>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <h2 style="font-size:18px;font-weight:800;margin:0">Popular games</h2>
+        <div style="background:#1d1826;border-radius:8px;padding:6px 10px;font-size:11px">Airlive2013 wins <span style="color:#3ee07a;font-weight:700">395.30x</span> playing <span style="color:#a79fb6">Lemur Levels</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px">
+        <sc-for list="{{ games }}" as="g" hint-placeholder-count="6">
+          <div style="aspect-ratio:3/4;border-radius:14px;background:repeating-linear-gradient(135deg,#1f1a28 0 10px,#1b1623 10px 20px);display:flex;align-items:flex-end;padding:10px;font:11px ui-monospace,monospace;color:#7d7390;cursor:pointer" style-hover="outline:2px solid #8b5cf6">{{ g }}</div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;align-items:baseline;gap:10px"><h2 style="font-size:18px;font-weight:800;margin:0">Popular esports</h2><a href="#" style="font-size:12px;color:#a79fb6">View all</a></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px">
+        <sc-for list="{{ esports }}" as="s" hint-placeholder-count="7">
+          <div style="background:#1d1826;border-radius:16px;padding:22px 8px;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;font-weight:700;cursor:pointer" style-hover="background:#261f31"><i class="icon-{{ s.icon }}" style="font-size:30px;color:#b69cff"></i>{{ s.label }}</div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="max-width:1000px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center">
+      <h2 style="font-size:20px;font-weight:500;margin:0">#1 Crypto Casino &amp; Sportsbook</h2>
+      <div style="position:relative;max-height:{{ aboutH }};overflow:hidden;text-align:left;font-size:12px;line-height:1.7;color:#a79fb6;display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0">Cloudbet is a crypto sportsbook and casino offering fast, fair odds on the world's biggest leagues, from the Premier League to the NBA. Real-time markets cover major <a href="#">esports</a> events like Dota 2 and League of Legends, so the action never stops.</p>
+        <p style="margin:0">High rollers can bet with raised limits, and every player gets instant crypto withdrawals, most completing in under two minutes.</p>
+        <p style="margin:0">The casino features thousands of slots, live dealer tables and original games, all provably fair.</p>
+      </div>
+      <button onClick="{{ toggleAbout }}" style="background:#2a2335;color:#b69cff;border:0;border-radius:20px;padding:10px 20px;font:700 13px Manrope;cursor:pointer">{{ aboutLabel }}</button>
+    </section>
+  </div>
+
+  <footer style="border-top:1px solid #231d2e">
+    <div style="max-width:1220px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-bottom:1px solid #231d2e">
+      <div style="display:flex;align-items:center;gap:20px"><span style="font-family:Unbounded;font-weight:800;font-size:18px;letter-spacing:1px">CLOUDBET</span><span style="display:flex;align-items:center;gap:6px;font-size:12px"><i class="icon-globe"></i>English<i class="icon-chevron-down"></i></span></div>
+      <div style="display:flex;gap:8px"><sc-for list="{{ footSocials }}" as="s" hint-placeholder-count="7"><span style="width:24px;height:24px;border-radius:50%;background:#2a2335;display:grid;place-items:center;font-size:12px;color:#cfc8dc"><i class="icon-{{ s }}"></i></span></sc-for><span style="width:24px;height:24px;border-radius:50%;border:1px solid #cfc8dc;display:grid;place-items:center;font-size:9px;font-weight:800">18+</span></div>
+    </div>
+    <div style="max-width:1220px;margin:0 auto;padding:20px 24px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+      <sc-for list="{{ footCols }}" as="c" hint-placeholder-count="4">
+        <div style="padding:0 16px;border-left:1px solid #231d2e;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:14px;font-weight:800;margin-bottom:4px">{{ c.title }}</div>
+          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="6"><a href="#" style="font-size:12px;color:#a79fb6;text-decoration:none">{{ l }}</a></sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid #231d2e;padding:20px 24px;text-align:center;font-size:11px;color:#6f6782">© 2026 Cloudbet. Gambling can be addictive. Play responsibly. 18+</div>
+  </footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startCollapsed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { collapsed: false, open: { Pulse: true, Sports: true, Casino: true, Esports: true }, league: 'MLB', more: false, about: false, picks: {} };
+  renderVals() {
+    const s = this.state, collapsed = s.collapsed ?? this.props.startCollapsed;
+    const groups = [
+      { title: 'Pulse', items: [['house','Feed'],['list-checks','Parlay of the Week']] },
+      { title: 'Sports', items: [['goal','American Football',1],['target','Baseball',1],['dribbble','Basketball',1],['swords','MMA',1],['volleyball','Soccer',1],['circle-dot','Tennis',1]] },
+      { title: 'Casino', items: [['cherry','Slots'],['user-round','Live dealer'],['spade','Blackjack'],['layout-grid','Table games'],['layers','Studios']] },
+      { title: 'Esports', items: [['gamepad-2','FIFA'],['shield','League of Legends'],['crosshair','Counter-Strike'],['sword','Dota 2']] },
+    ].map(g => ({ title: g.title, open: s.open[g.title], chev: s.open[g.title] ? 'up' : 'down',
+      toggle: () => this.setState(st => ({ open: { ...st.open, [g.title]: !st.open[g.title] } })),
+      items: g.items.map(([icon,label,p]) => ({ icon, label, popular: !!p })) }));
+    const leagues = ['MLB','NFL','NCAAF','UFC','Major League Soccer','International Friendlies','UEFA Nations League','Virtual NBA','GT Nations League'].map(n => ({
+      name: n, border: n === s.league ? '#8b5cf6' : '#2c2538', bg: n === s.league ? '#2a2044' : '#1d1826', select: () => this.setState({ league: n }) }));
+    const raw = [
+      { time: 'Today • 5:05 PM', rows: [['BOS Red Sox','#d9304a',[['+1.5','1.55'],['O 6.5','1.97'],['','2.00']]],['CHI Cubs','#8b8fd9',[['-1.5','2.50'],['U 6.5','1.88'],['','1.89']]]] },
+      { time: 'Today • 7:10 PM', rows: [['NY Yankees','#6b7a99',[['-1.5','2.55'],['O 8.5','1.88'],['','1.70']]],['TOR Blue Jays','#3b6fd9',[['+1.5','1.52'],['U 8.5','1.94'],['','2.18']]]] },
+      { time: 'Today • 9:40 PM', rows: [['LA Dodgers','#2f6fe0',[['-1.5','2.10'],['O 7.5','1.91'],['','1.62']]],['SD Padres','#a07a4a',[['+1.5','1.72'],['U 7.5','1.91'],['','2.35']]]] },
+    ];
+    const matches = raw.slice(0, s.more ? 3 : 1).map((m, mi) => ({ time: m.time, rows: m.rows.map(([team,color,odds], ri) => ({ team, color, odds: odds.map(([line,price], oi) => {
+      const k = `${mi}-${ri}-${oi}`, on = !!s.picks[k];
+      return { line, price, bg: on ? '#8b5cf6' : 'transparent', color: on ? '#fff' : '#d4f53c', pick: () => this.setState(st => ({ picks: { ...st.picks, [k]: !st.picks[k] } })) };
+    }) })) }));
+    return {
+      sideW: collapsed ? '72px' : '220px', expanded: !collapsed, logoText: collapsed ? 'C' : 'CLOUDBET',
+      collapseIcon: collapsed ? 'panel-left-open' : 'panel-left-close', toggleSide: () => this.setState({ collapsed: !collapsed }),
+      modes: collapsed ? [{icon:'trophy',label:''}] : [{icon:'trophy',label:'Sports'},{icon:'dice-5',label:'Casino'},{icon:'gamepad-2',label:'Esports'}],
+      navGroups: groups, socials: ['chrome','wallet','apple','twitter','send','github'],
+      perks: [{icon:'gift',title:'WELCOME PACKAGE',text:'Make your first deposit to unlock real cash rewards up to $2,500.'},{icon:'crown',title:'VIP CLUB',text:'Exclusive rewards & most sought-after experiences.'},{icon:'zap',title:'FAST WITHDRAWAL',text:'90% of our withdrawals take less than 2 minutes.'}],
+      coins: [{s:'B',bg:'#f7931a'},{s:'T',bg:'#26a17b'},{s:'E',bg:'#e6e6f0'},{s:'X',bg:'#c9c9d4'},{s:'L',bg:'#bfbbd0'}],
+      stats: [{value:'$1,107,684',label:'Last 24 hours',sub:'Value (USDT)'},{value:'1,033,159',label:'Lifetime',sub:'Withdrawals since 2013'},{value:'< 1 MINUTE',label:'Average speed',sub:'Withdrawal'}],
+      sports: [['volleyball','Soccer'],['circle-dot','Tennis'],['goal','American Football'],['dribbble','Basketball'],['target','Baseball'],['swords','MMA'],['flag','Aussie Rules'],['feather','Badminton']].map(([icon,label])=>({icon,label})),
+      leagues, activeLeague: s.league, matches, moreLabel: s.more ? 'Show less' : 'Show more', toggleMore: () => this.setState({ more: !s.more }),
+      slipCount: Object.values(s.picks).filter(Boolean).length,
+      games: ['game tile','game tile','game tile','game tile','game tile','game tile'],
+      esports: [['crosshair','Counter-Strike'],['sword','Dota 2'],['gamepad-2','FIFA'],['dribbble','NBA2K'],['zap','Valorant'],['shield','League of Legends'],['target','Rainbow Six']].map(([icon,label])=>({icon,label})),
+      aboutH: s.about ? '600px' : '70px', aboutLabel: s.about ? 'Show less' : 'Show more', toggleAbout: () => this.setState({ about: !s.about }),
+      footSocials: ['instagram','send','twitter','youtube','message-square','github','radio'],
+      footCols: [
+        {title:'Resources',links:['VIP','Promotions','Blog','Academy','Affiliate Program','Newsroom','Partnerships','Supported cryptocurrencies','About us']},
+        {title:'Sports',links:['Live bet in-play','Bitcoin esports','Bet on soccer','Bet on tennis','Bet on basketball','Crypto sportsbook']},
+        {title:'Casino',links:['Bitcoin baccarat','Bitcoin blackjack','Bitcoin roulette','Bitcoin slots','Table games','Live bitcoin casino']},
+        {title:'Support',links:['Responsible gambling','Gambling helpline','Self exclusion','Provably fair','Terms of Service','Sports rules','Help Center']},
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
