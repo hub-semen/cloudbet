@@ -163,9 +163,9 @@ a{color:#b69cff;text-decoration:underline}a:hover{color:#d4f53c}
         <h2 style="font-size:18px;font-weight:800;margin:0">Popular games</h2>
         <div style="background:#1d1826;border-radius:8px;padding:6px 10px;font-size:11px">Airlive2013 wins <span style="color:#3ee07a;font-weight:700">395.30x</span> playing <span style="color:#a79fb6">Lemur Levels</span></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px">
-        <sc-for list="{{ games }}" as="g" hint-placeholder-count="6">
-          <div style="aspect-ratio:3/4;border-radius:14px;background:repeating-linear-gradient(135deg,#1f1a28 0 10px,#1b1623 10px 20px);display:flex;align-items:flex-end;padding:10px;font:11px ui-monospace,monospace;color:#7d7390;cursor:pointer" style-hover="outline:2px solid #8b5cf6">{{ g }}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px">
+        <sc-for list="{{ games }}" as="g" hint-placeholder-count="5">
+          <img src="{{ g.img }}" alt="{{ g.title }}" loading="lazy" style="display:block;width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:14px;background:#1f1a28;cursor:pointer" style-hover="outline:2px solid #8b5cf6">
         </sc-for>
       </div>
     </section>
@@ -334,7 +334,7 @@ class Component extends DCLogic {
       sports: [['volleyball','Soccer'],['circle-dot','Tennis'],['goal','American Football'],['dribbble','Basketball'],['target','Baseball'],['swords','MMA'],['flag','Aussie Rules']].map(([icon,label])=>({icon,label})),
       leagues, activeLeague: s.league, matches, moreLabel: s.more ? 'Show less' : 'Show more', toggleMore: () => this.setState({ more: !s.more }),
       slipCount: Object.values(s.picks).filter(Boolean).length,
-      games: ['game tile','game tile','game tile','game tile','game tile','game tile'],
+      games: [['supernova-galaxy-orbs.webp','Supernova Galaxy Orbs Hold & Win'],['book-of-hidden-tombs.webp','Book of Hidden Tombs'],['lucky-caiman.jpg','Lucky Caiman'],['3-golden-chests.webp','3 Golden Chests'],['culinary-clash.jpg','Culinary Clash']].map(([f,title])=>({img:'./images/games/'+f,title})),
       esports: [['crosshair','Counter-Strike'],['sword','Dota 2'],['gamepad-2','FIFA'],['dribbble','NBA2K'],['zap','Valorant'],['shield','League of Legends'],['target','Rainbow Six']].map(([icon,label])=>({icon,label})),
       aboutH: s.about ? '600px' : '70px', aboutLabel: s.about ? 'Show less' : 'Show more', toggleAbout: () => this.setState({ about: !s.about }),
       footSocials: ['instagram','send','twitter','youtube','message-square','github','radio'],
