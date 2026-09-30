@@ -78,7 +78,7 @@ a{color:#b69cff;text-decoration:underline}a:hover{color:#d4f53c}
       <img src="./images/hero-banner.webp" alt="Cloudbet" style="display:block;width:100%;height:100%;min-height:240px;object-fit:cover;border-radius:20px">
     </section>
 
-    <section style="max-width:880px">
+    <section style="max-width:880px;margin:0 auto;text-align:center">
       <p style="margin:0;font-size:16px;line-height:1.7;color:#cfc8dc;text-wrap:pretty">Premier casino et paris sur les sports en ligne crypto sans limites. Oui, tout cela, c'est Cloudbet. Vous pouvez oublier les formalités bancaires. En effet, vous pariez en Bitcoin, en Ethereum ou en USDT et retirez vos gains instantanément. Ce qui vous attend dans ce casino et ce site de paris sportifs crypto : des coefficients élevés, des milliers de machines à sous et un anonymat total.</p>
     </section>
 
@@ -115,7 +115,7 @@ a{color:#b69cff;text-decoration:underline}a:hover{color:#d4f53c}
     </section>
 
     <section style="display:flex;flex-direction:column;gap:14px">
-      <div style="display:flex;align-items:baseline;gap:10px"><h2 style="font-size:18px;font-weight:800;margin:0">Popular sports</h2><a href="#" style="font-size:12px;color:#a79fb6">View all</a></div>
+      <div style="display:flex;align-items:baseline;gap:10px"><h2 style="font-size:18px;font-weight:800;margin:0">Popular sports</h2></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px">
         <sc-for list="{{ sports }}" as="s" hint-placeholder-count="8">
           <div style="background:#1d1826;border-radius:16px;padding:22px 8px;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;font-weight:700;cursor:pointer" style-hover="background:#261f31"><i class="icon-{{ s.icon }}" style="font-size:30px;color:#b69cff"></i>{{ s.label }}</div>
@@ -171,7 +171,7 @@ a{color:#b69cff;text-decoration:underline}a:hover{color:#d4f53c}
     </section>
 
     <section style="display:flex;flex-direction:column;gap:14px">
-      <div style="display:flex;align-items:baseline;gap:10px"><h2 style="font-size:18px;font-weight:800;margin:0">Popular esports</h2><a href="#" style="font-size:12px;color:#a79fb6">View all</a></div>
+      <div style="display:flex;align-items:baseline;gap:10px"><h2 style="font-size:18px;font-weight:800;margin:0">Popular esports</h2></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px">
         <sc-for list="{{ esports }}" as="s" hint-placeholder-count="7">
           <div style="background:#1d1826;border-radius:16px;padding:22px 8px;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;font-weight:700;cursor:pointer" style-hover="background:#261f31"><i class="icon-{{ s.icon }}" style="font-size:30px;color:#b69cff"></i>{{ s.label }}</div>
