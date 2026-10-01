@@ -1,0 +1,5 @@
+# CTA redirects (Cloudflare Pages)
+/registration/  https://vodds.com/?utm_source=cloudbet-fr  307
+/registration   https://vodds.com/?utm_source=cloudbet-fr  307
+/promotions/    https://vodds.com/promotions/?utm_source=cloudbet-fr  307
+/promotions     https://vodds.com/promotions/?utm_source=cloudbet-fr  307
